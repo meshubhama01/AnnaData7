@@ -1,0 +1,187 @@
+import pandas as pd
+import numpy as np 
+# import matplotlib.pyplot as plt
+import matplotlib
+import re
+from sklearn.feature_selection import VarianceThreshold
+
+def meanOfSeason(a_dataframe, season):
+    if(re.match(season, 'summer', re.I)):
+        return a_dataframe[['Mar', 'Apr', 'May', 'Jun']].mean(axis = 1).tolist()
+    if(re.match(season, 'rainy', re.I)):
+        return a_dataframe[['Jul', 'Aug', 'Sep', 'Oct']].mean(axis = 1).tolist()
+    if(re.match(season, 'winter', re.I)):
+        return a_dataframe[['Nov', 'Dec', 'Jan', 'Feb']].mean(axis = 1).tolist()
+    
+rainfall_data = pd.read_excel('rainfallData.xlsx')
+years = rainfall_data['Year/Month'].tolist()
+rainfall_data.set_index('Year/Month', inplace=True)
+
+precipitation_data = pd.read_csv('precipitation.csv', sep = "\t")
+wetDayFrequency_data = pd.read_csv('wetDayFrequency.csv', sep = '\t').head(100)
+cloudcover_data = pd.read_csv('cloudCover.csv', sep = '\t').head(100)
+diurnalTemperatureRange_data = pd.read_csv('diurnalTemperatureRange.csv', sep = '\t').head(100)
+groundFrostFrequency_data = pd.read_csv('groundFrostFrequency.csv', sep = '\t').head(100)
+maximumTemperature_data = pd.read_csv('maximumTemperature.csv', sep = '\t').head(100)
+minimumTemperature_data = pd.read_csv('minimumTemperature.csv', sep = '\t').head(100)
+potentialEvapotranspiration_data = pd.read_csv('potentialEvapotranspiration.csv', sep = '\t').head(100)
+averageTemperature_data = pd.read_csv('averageTemperature.csv', sep = '\t').head(100)
+referenceCropEvapotranspiration_data = pd.read_csv('referenceCropEvapotranspiration.csv', sep = '\t').head(100)
+vapourPressure_data = pd.read_csv('vapourPressure.csv', sep = '\t').head(100)
+
+summer_rainfall_data = meanOfSeason(rainfall_data, 'summer')
+rainy_rainfall_data = meanOfSeason(rainfall_data, 'rainy')
+winter_rainfall_data = meanOfSeason(rainfall_data, 'winter')
+
+summer_precipitation_data = meanOfSeason(precipitation_data, 'summer')
+rainy_precipitation_data = meanOfSeason(precipitation_data, 'rainy')
+winter_precipitation_data = meanOfSeason(precipitation_data, 'winter')
+
+summer_wetDayFrequency_data = meanOfSeason(wetDayFrequency_data, 'summer')
+rainy_wetDayFrequency_data = meanOfSeason(wetDayFrequency_data, 'rainy')
+winter_wetDayFrequency_data = meanOfSeason(wetDayFrequency_data, 'winter')
+
+summer_cloudcover_data = meanOfSeason(cloudcover_data, 'summer')
+rainy_cloudcover_data = meanOfSeason(cloudcover_data, 'rainy')
+winter_cloudcover_data = meanOfSeason(cloudcover_data, 'winter')
+
+summer_diurnalTemperatureRange_data = meanOfSeason(diurnalTemperatureRange_data, 'summer')
+rainy_diurnalTemperatureRange_data = meanOfSeason(diurnalTemperatureRange_data, 'rainy')
+winter_diurnalTemperatureRange_data = meanOfSeason(diurnalTemperatureRange_data, 'winter')
+
+summer_groundFrostFrequency_data = meanOfSeason(groundFrostFrequency_data, 'summer')
+rainy_groundFrostFrequency_data = meanOfSeason(groundFrostFrequency_data, 'rainy')
+winter_groundFrostFrequency_data = meanOfSeason(groundFrostFrequency_data, 'winter')
+
+summer_maximumTemperature_data = meanOfSeason(maximumTemperature_data, 'summer')
+rainy_maximumTemperature_data = meanOfSeason(maximumTemperature_data, 'rainy')
+winter_maximumTemperature_data = meanOfSeason(maximumTemperature_data, 'winter')
+
+summer_minimumTemperature_data = meanOfSeason(minimumTemperature_data, 'summer')
+rainy_minimumTemperature_data = meanOfSeason(minimumTemperature_data, 'rainy')
+winter_minimumTemperature_data = meanOfSeason(minimumTemperature_data, 'winter')
+
+summer_potentialEvapotranspiration_data = meanOfSeason(potentialEvapotranspiration_data, 'summer')
+rainy_potentialEvapotranspiration_data = meanOfSeason(potentialEvapotranspiration_data, 'rainy')
+winter_potentialEvapotranspiration_data = meanOfSeason(potentialEvapotranspiration_data, 'winter')
+
+summer_averageTemperature_data = meanOfSeason(averageTemperature_data, 'summer')
+rainy_averageTemperature_data = meanOfSeason(averageTemperature_data, 'rainy')
+winter_averageTemperature_data = meanOfSeason(averageTemperature_data, 'winter')
+
+summer_referenceCropEvapotranspiration_data = meanOfSeason(referenceCropEvapotranspiration_data, 'summer')
+rainy_referenceCropEvapotranspiration_data = meanOfSeason(referenceCropEvapotranspiration_data, 'rainy')
+winter_referenceCropEvapotranspiration_data = meanOfSeason(referenceCropEvapotranspiration_data, 'winter')
+
+summer_vapourPressure_data = meanOfSeason(vapourPressure_data, 'summer')
+rainy_vapourPressure_data = meanOfSeason(vapourPressure_data, 'rainy')
+winter_vapourPressure_data = meanOfSeason(vapourPressure_data, 'winter')
+
+matplotlib.rcParams['figure.figsize'] = [28.0, 10.0]
+
+
+matplotlib.pyplot.plot(years, summer_rainfall_data, color = 'cornflowerblue', linewidth = 2, label = 'Summer Rainfall (mm)')
+matplotlib.pyplot.plot(years, summer_precipitation_data, color = 'black', linewidth = 2, label = 'Summer Precipitation (mm)')
+matplotlib.pyplot.plot(years, summer_wetDayFrequency_data, color = 'purple', linewidth = 2, label = 'Summer WetDayFrequency (intPerDay')
+matplotlib.pyplot.plot(years, summer_cloudcover_data, color = 'blue', linewidth = 2, label = 'Summer cloudcover (%)')
+matplotlib.pyplot.plot(years, summer_diurnalTemperatureRange_data, color = 'yellow', linewidth = 2, label = 'Summer diurnalTemperatureRange')
+matplotlib.pyplot.plot(years, summer_groundFrostFrequency_data, color = 'brown', linewidth = 2, label = 'Summer groundFrostFrequency (intPerDay)')
+matplotlib.pyplot.plot(years, summer_maximumTemperature_data, color = 'red', linewidth = 2, label = 'Summer maximumTemperature')
+matplotlib.pyplot.plot(years, summer_minimumTemperature_data, color = 'orange', linewidth = 2, label = 'Summer minimumTemperature')
+matplotlib.pyplot.plot(years, summer_potentialEvapotranspiration_data, color = 'grey', linewidth = 2, label = 'Summer potentialEvapotranspiration')
+matplotlib.pyplot.plot(years, summer_averageTemperature_data, color = 'cyan', linewidth = 2, label = 'Summer averageTemperature')
+matplotlib.pyplot.plot(years, summer_referenceCropEvapotranspiration_data, color = 'green', linewidth = 2, label = 'Summer referenceCropEvapotranspiration (mmPerDay)')
+matplotlib.pyplot.plot(years, summer_vapourPressure_data, color = 'magenta', linewidth = 2, label = 'Summer vapourPressure (int/hpa)')
+matplotlib.pyplot.xlabel('Year')
+matplotlib.pyplot.ylabel('Scale')
+matplotlib.pyplot.title('Summer')
+matplotlib.pyplot.legend()
+matplotlib.pyplot.show()
+
+matplotlib.pyplot.plot(years, rainy_rainfall_data, color = 'cornflowerblue', linewidth = 2, label = 'rainy Rainfall')
+matplotlib.pyplot.plot(years, rainy_precipitation_data, color = 'black', linewidth = 2, label = 'rainy Precipitation')
+matplotlib.pyplot.plot(years, rainy_wetDayFrequency_data, color = 'purple', linewidth = 2, label = 'rainy WetDayFrequency')
+matplotlib.pyplot.plot(years, rainy_cloudcover_data, color = 'blue', linewidth = 2, label = 'rainy cloudcover')
+matplotlib.pyplot.plot(years, rainy_diurnalTemperatureRange_data, color = 'yellow', linewidth = 2, label = 'rainy diurnalTemperatureRange')
+matplotlib.pyplot.plot(years, rainy_groundFrostFrequency_data, color = 'brown', linewidth = 2, label = 'rainy groundFrostFrequency')
+matplotlib.pyplot.plot(years, rainy_maximumTemperature_data, color = 'red', linewidth = 2, label = 'rainy maximumTemperature')
+matplotlib.pyplot.plot(years, rainy_minimumTemperature_data, color = 'orange', linewidth = 2, label = 'rainy minimumTemperature')
+matplotlib.pyplot.plot(years, rainy_potentialEvapotranspiration_data, color = 'grey', linewidth = 2, label = 'rainy potentialEvapotranspiration')
+matplotlib.pyplot.plot(years, rainy_averageTemperature_data, color = 'cyan', linewidth = 2, label = 'rainy averageTemperature')
+matplotlib.pyplot.plot(years, rainy_referenceCropEvapotranspiration_data, color = 'green', linewidth = 2, label = 'rainy referenceCropEvapotranspiration')
+matplotlib.pyplot.plot(years, rainy_vapourPressure_data, color = 'magenta', linewidth = 2, label = 'rainy vapourPressure')
+matplotlib.pyplot.xlabel('Year')
+matplotlib.pyplot.ylabel('Scale')
+matplotlib.pyplot.title('rainy')
+matplotlib.pyplot.legend()
+matplotlib.pyplot.show()
+
+matplotlib.pyplot.plot(years, winter_rainfall_data, color = 'cornflowerblue', linewidth = 2, label = 'winter Rainfall')
+matplotlib.pyplot.plot(years, winter_precipitation_data, color = 'black', linewidth = 2, label = 'winter Precipitation')
+matplotlib.pyplot.plot(years, winter_wetDayFrequency_data, color = 'purple', linewidth = 2, label = 'winter WetDayFrequency')
+matplotlib.pyplot.plot(years, winter_cloudcover_data, color = 'blue', linewidth = 2, label = 'winter cloudcover')
+matplotlib.pyplot.plot(years, winter_diurnalTemperatureRange_data, color = 'yellow', linewidth = 2, label = 'winter diurnalTemperatureRange')
+matplotlib.pyplot.plot(years, winter_groundFrostFrequency_data, color = 'brown', linewidth = 2, label = 'winter groundFrostFrequency')
+matplotlib.pyplot.plot(years, winter_maximumTemperature_data, color = 'red', linewidth = 2, label = 'winter maximumTemperature')
+matplotlib.pyplot.plot(years, winter_minimumTemperature_data, color = 'orange', linewidth = 2, label = 'winter minimumTemperature')
+matplotlib.pyplot.plot(years, winter_potentialEvapotranspiration_data, color = 'grey', linewidth = 2, label = 'winter potentialEvapotranspiration')
+matplotlib.pyplot.plot(years, winter_averageTemperature_data, color = 'cyan', linewidth = 2, label = 'winter averageTemperature')
+matplotlib.pyplot.plot(years, winter_referenceCropEvapotranspiration_data, color = 'green', linewidth = 2, label = 'winter referenceCropEvapotranspiration')
+matplotlib.pyplot.plot(years, winter_vapourPressure_data, color = 'magenta', linewidth = 2, label = 'winter vapourPressure')
+matplotlib.pyplot.xlabel('Year')
+matplotlib.pyplot.ylabel('Scale')
+matplotlib.pyplot.title('winter')
+matplotlib.pyplot.legend()
+matplotlib.pyplot.show()
+
+d = {#'summer_rainfall_data': summer_rainfall_data, 
+    'summer_precipitation_data': summer_precipitation_data, 
+    'summer_wetDayFrequency_data': summer_wetDayFrequency_data,
+    'summer_cloudcover_data': summer_cloudcover_data,
+    'summer_diurnalTemperatureRange_data': summer_diurnalTemperatureRange_data,
+    'summer_groundFrostFrequency_data': summer_groundFrostFrequency_data,
+    'summer_maximumTemperature_data': summer_maximumTemperature_data,
+    'summer_minimumTemperature_data': summer_minimumTemperature_data,
+    'summer_potentialEvapotranspiration_data': summer_potentialEvapotranspiration_data,
+    'summer_averageTemperature_data': summer_averageTemperature_data,
+    'summer_referenceCropEvapotranspiration_data': summer_referenceCropEvapotranspiration_data,
+    'summer_vapourPressure_data': summer_vapourPressure_data}
+
+summer_data = pd.DataFrame(data = d)
+
+sel = VarianceThreshold()#(threshold=(.8 * (1 - .8)))
+sel.fit(summer_data.as_matrix())
+
+mask = sel.variances_ > 0.2
+after_feature_selection_summer = summer_data.loc[:, mask]
+after_feature_selection_summer.head()
+
+summer_rainfall_data = pd.Series(summer_rainfall_data)
+after_feature_selection_summer = after_feature_selection_summer.assign(summer_rainfall_data = summer_rainfall_data.values)
+after_feature_selection_summer.head()
+
+d = {#'rainy_rainfall_data': rainy_rainfall_data, 
+    'rainy_precipitation_data': rainy_precipitation_data, 
+    'rainy_wetDayFrequency_data': rainy_wetDayFrequency_data,
+    'rainy_cloudcover_data': rainy_cloudcover_data}
+
+rainy_data = pd.DataFrame(data = d)
+
+rainy_rainfall_data = pd.Series(rainy_rainfall_data)
+after_feature_selection_rainy = rainy_data.assign(rainy_rainfall_data = rainy_rainfall_data.values)
+after_feature_selection_rainy.head()
+
+d = {#'winter_rainfall_data': winter_rainfall_data, 
+    'winter_precipitation_data': winter_precipitation_data, 
+    'winter_wetDayFrequency_data': winter_wetDayFrequency_data,
+    'winter_cloudcover_data': winter_cloudcover_data}
+
+winter_data = pd.DataFrame(data = d)
+
+winter_rainfall_data = pd.Series(winter_rainfall_data)
+after_feature_selection_winter = winter_data.assign(winter_rainfall_data = winter_rainfall_data.values)
+after_feature_selection_winter.head()
+
+after_feature_selection_summer.to_csv("after_feature_selection_summer.csv", index=False)
+after_feature_selection_rainy.to_csv("after_feature_selection_rainy.csv", index=False)
+after_feature_selection_winter.to_csv("after_feature_selection_winter.csv", index=False)
