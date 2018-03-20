@@ -11,7 +11,11 @@ this will prove beneficial to a farmer to avoid losses and increase productivity
 However, it is to be noted that this app is still in prototype phase and hence the backend database is not
 currently active. So, Python Sockets has been used to host the data and this could work with both wired
 and wireless connections.
+
+
+
 Salient Features:-
+
 Your PERSONAL advisor:
 Anna-Data also stores the personal data regarding a farmer which helps in proving extremely
 personalised information/advice for a particular person.
@@ -27,10 +31,14 @@ A video information resource from All India Radio (Aakashwani) is added.
 A link to Ministry of Agriculture of India is also added to let an Indian farmer know more about the
 schemes and funds implemented by the Government of India.
 
+
+
 Additional Features that could be added in future:
 A local language translation can be added to the current phase to make the app more informative and
 easy to understand. Also, a text-to-speech engine can be integrated to narrate out the advice to the
 user.
+
+
 Final Word:
 Anna-Data , with its powerful backend processing has a good potential to prove very beneficial in
 providing a person with personalised advice just like a wise old friend.
