@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "874860022932",
+    "firebase_url": "https://annadata-a3e9e.firebaseio.com",
+    "project_id": "annadata-a3e9e",
+    "storage_bucket": "annadata-a3e9e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:874860022932:android:2e1e0324be6ea2a3",
+        "android_client_info": {
+          "package_name": "com.example.genius31ravi.annadata"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "874860022932-0gbih4qs63ejt8cp3rqh9kuo6knk3ji0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.genius31ravi.annadata",
+            "certificate_hash": "923d8150facdee09c5064f5d95f9e52cc5778d7a"
+          }
+        },
+        {
+          "client_id": "874860022932-5foem98pejqqac29ccmg3fbojtb8rtiv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOueK7dlwnP4hwrI0bCKl3RjCC83cR9LU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "874860022932-5foem98pejqqac29ccmg3fbojtb8rtiv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

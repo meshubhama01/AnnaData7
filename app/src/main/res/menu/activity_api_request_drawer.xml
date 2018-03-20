@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_overall"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Overall Report" />
+        <item
+            android:id="@+id/nav_temp"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Temperature" />
+        <item
+            android:id="@+id/nav_rain"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Rain Chances" />
+        <item
+            android:id="@+id/nav_prices"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Market Prices" />
+    </group>
+
+    <item android:title="Review,Rate, Bug Reports">
+        <menu>
+            <item
+                android:id="@+id/nav_rate"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Rate Us at PlayStore" />
+
+            <item
+                android:id="@+id/nav_Report"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Report An Issue" />
+
+        </menu>
+    </item>
+
+</menu>

@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">AnnaData</string>
+    <string name="title_item_list">Items</string>
+    <string name="title_item_detail">Item Detail</string>
+    <string name="title_activity_api_request">ApiRequest</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_drawer1">Drawer1</string>
+    <string name="title_activity_drawer_main">DrawerMain</string>
+    <string name="MINISTRY"><a href="www.agriculture.gov.in">Ministry</a></string>
+</resources>

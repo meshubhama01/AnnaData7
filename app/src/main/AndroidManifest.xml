@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.genius31ravi.annadata">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <activity android:name=".Splash">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".SignUp" />
+        <activity android:name=".HorScroller" />
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".OTP" />
+        <activity android:name=".Dashboard" />
+        <activity android:name=".Bookmark" />
+        <activity android:name=".ProfileSetup" />
+        <activity android:name=".Settings" />
+        <activity android:name=".Help" />
+        <activity android:name=".SignOut" />
+        <activity android:name=".Chat" />
+        <activity android:name=".ProfileActivity" />
+        <activity android:name=".AgiMinPortal" />
+        <activity android:name=".Air" />
+        <activity android:name=".Events" />
+        <activity
+            android:name=".ApiRequest"
+            android:label="@string/title_activity_api_request"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".Drawer1"
+            android:label="@string/title_activity_drawer1"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".DrawerMain"
+            android:label="@string/title_activity_drawer_main"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".EditProfile" />
+        <activity android:name=".Archives" />
+        <activity android:name=".Modes" />
+        <activity android:name=".Share" />
+        <activity android:name=".OverallRev" />
+        <activity android:name=".Youtube" />
+        <activity android:name=".GPSsend"></activity>
+    </application>
+
+</manifest>
