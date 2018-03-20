@@ -1,1 +1,38 @@
 Machine learning for various agriculture parameters prediction and deploy using android app 
+
+The Main work:
+Anna-Data is not just another android app. It’s an efficient actionable advisor to a farmer. In other
+words, Anna-Data predicts the weather with high enough accuracy according to the current gps location
+and publically available historical weather data using Machine Learning algorithms and the information
+is parsed and displayed in the app in real-time. Also, Anna-Data conveys the acquired information in
+layman’s terms and not confuse a farmer with complex stats. Now, not only the information is
+sufficiently comprehensive but it also helps a farmer to take necessary steps according to it. In long term
+this will prove beneficial to a farmer to avoid losses and increase productivity.
+However, it is to be noted that this app is still in prototype phase and hence the backend database is not
+currently active. So, Python Sockets has been used to host the data and this could work with both wired
+and wireless connections.
+Salient Features:-
+Your PERSONAL advisor:
+Anna-Data also stores the personal data regarding a farmer which helps in proving extremely
+personalised information/advice for a particular person.
+Minimum requirements:
+The data is also archived and flushed to reduce the storage use and the app is so designed that it uses
+minimum resources and can be run on cheaper smart-phones too.
+
+Global Utility:
+This app is not specific to a particular geographic location, it can be used anywhere around the globe
+and the information/advice will be as comprehensive and accurate as it is.
+Additional things added for current phase:
+A video information resource from All India Radio (Aakashwani) is added.
+A link to Ministry of Agriculture of India is also added to let an Indian farmer know more about the
+schemes and funds implemented by the Government of India.
+
+Additional Features that could be added in future:
+A local language translation can be added to the current phase to make the app more informative and
+easy to understand. Also, a text-to-speech engine can be integrated to narrate out the advice to the
+user.
+Final Word:
+Anna-Data , with its powerful backend processing has a good potential to prove very beneficial in
+providing a person with personalised advice just like a wise old friend.
+We are confident that on further polishing and adding of additional features, Anna-Data could be a
+game changer in agriculture related applications available today !
