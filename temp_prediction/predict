@@ -1,0 +1,172 @@
+Created on Tue Mar 20 04:49:43 2018
+
+@author: RISHAV KUMAR
+"""
+
+import numpy as np
+import nltk
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+from sklearn import preprocessing, svm
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
+from sklearn.neighbors import KNeighborsClassifier
+from nltk.classify.scikitlearn import SklearnClassifier
+from sklearn.naive_bayes import MultinomialNB, GaussianNB, BernoulliNB
+# from sklearn.cross_validation import cross_val_score
+from sklearn import linear_model
+from sklearn.svm import SVC
+
+
+class classify(object):
+    def __init__(self, X, y):
+        self.X = np.array(X)
+        self.y = np.array(y)
+        # print(self.X)
+        # print(self.y)
+        self.acc = []
+
+    def split(self, testpr = 0.3):
+        self.X_tr, self.X_te, self.y_tr, self.y_te = train_test_split(self.X, self.y, test_size=testpr)
+        # print(self.X_te, self.X_tr, self.y_tr, self.y_te)
+        self.X_tr = np.array(self.X_tr, dtype='int32')
+        self.X_te = np.array(self.X_te, dtype='int32')
+        self.y_tr = np.array(self.y_tr, dtype='int32')
+        self.y_te = np.array(self.y_te, dtype='int32')
+        self.length = len(self.X_tr)
+
+    def getbest(self):
+        data = self.X
+        data1 = data
+        # data1[c] = data1[c].append(len(data1[c]),self.y[c])
+        # data = data1
+        # print(data)
+
+        '''
+        data = []
+        for c in range(self.length):
+            p = ()
+            p += self.X_te[c]
+            p += self.y_te[c]
+            data.append(p)
+        nbc = nltk.NaiveBayesClassifier.train(data[:self.length * 0.7])
+        nbcacc = nltk.classify.accuracy(nbc, data[self.length * 0.7:])
+        # nbcacc = accuracy_score(self.y_te, ynbc)
+        self.acc.append(("NaiveBayes", nbcacc))
+        '''
+
+
+        knn = KNeighborsClassifier(n_neighbors=3)
+        # score = cross_val_score(knn, self.X_tr, self.y_tr, cv=3, scoring='accuracy')
+        # print("scores ", score)
+        knn.fit(self.X_tr, self.y_tr)
+        yknn = knn.predict(self.X_te)
+        knnacc = accuracy_score(self.y_te, yknn)
+        self.acc.append(("knn", knnacc))
+
+
+        clf = svm.SVR()
+        clf.fit(self.X_tr, self.y_tr)
+        svr = clf.score(self.X_te, self.y_te)
+        self.acc.append(("SVR", svr))
+
+        clf = LinearDiscriminantAnalysis()
+        clf.fit(self.X_tr, self.y_tr)
+        lda = clf.score(self.X_te, self.y_te)
+        self.acc.append(("LDA", lda))
+
+        clf = GaussianNB()
+        clf.fit(self.X_tr, self.y_tr)
+        xx = clf.predict(self.X_te)
+        gnb = accuracy_score(self.y_te, xx)
+        self.acc.append(("GaussianNB", gnb))
+
+        clf = BernoulliNB()
+        clf.fit(self.X_tr, self.y_tr)
+        xx = clf.predict(self.X_te)
+        gnb = accuracy_score(self.y_te, xx)
+        self.acc.append(("BernoulliNB", gnb))
+
+        clf = MultinomialNB()
+        clf.fit(self.X_tr, self.y_tr)
+        xx = clf.predict(self.X_te)
+        gnb = accuracy_score(self.y_te, xx)
+        self.acc.append(("MultinomialNB", gnb))
+
+        clf = linear_model.LinearRegression()
+        clf.fit(self.X_tr, self.y_tr)
+        lrgacc = clf.score(self.X_te, self.y_te)
+        self.acc.append(("LinearReg", lrgacc))
+
+        clf = linear_model.LogisticRegression()
+        clf.fit(self.X_tr.astype('int'), self.y_tr.astype('int'))
+        logacc = clf.score(self.X_te.astype('int'), self.y_te.astype('int'))
+        self.acc.append(("LogisticReg", logacc))
+
+        clf = linear_model.SGDClassifier()
+        clf.fit(self.X_tr, self.y_tr)
+        ysgd = clf.predict(self.X_te)
+        sgdacc = accuracy_score(self.y_te, ysgd)
+        self.acc.append(("SGDC", sgdacc))
+
+        clf = DecisionTreeClassifier()
+        clf.fit(self.X_tr, self.y_tr)
+        dtc = clf.score(self.X_te, self.y_te)
+        self.acc.append(("DecisionTree", dtc))
+
+        clf = SVC(kernel='rbf')
+        clf.fit(self.X_tr, self.y_tr)
+        ysvc = clf.predict(self.X_te)
+        svcaccr = accuracy_score(self.y_te, ysvc)
+        self.acc.append(("SVC-rbf", svcaccr))
+
+        clf = SVC(kernel='linear')
+        clf.fit(self.X_tr, self.y_tr)
+        ysvc = clf.predict(self.X_te)
+        svcaccl = accuracy_score(self.y_te, ysvc)
+        self.acc.append(("SVC-linear", svcaccl))
+
+        '''clf = SVC(kernel='poly', degree=5)
+        clf.fit(self.X_tr, self.y_tr)
+        ysvc = clf.predict(self.X_te)
+        print("svcp", ysvc)
+        svcaccp = accuracy_score(self.y_te, ysvc)
+        self.acc.append(("SVC-poly", svcaccp))'''
+
+        self.acc.sort(key=lambda tup: tup[1], reverse=True)
+        for i in self.acc:
+            print(i[0], " ", i[1] * 100)
+
+'''
+file = pd.read_csv('cars.csv', na_values=" NaN")
+file = file.replace('', np.nan)
+cy = file['Cylinders']
+dis = file['Displacement']
+hor = file['Horsepower']
+wei = file['Weight']
+acce = file['Acceleration']
+lenn = len(cy)
+X = []
+y1 = file['MPG']
+y = []
+for i in y1:
+    y.append(i)
+for i in range(lenn):
+    pp = []
+    # wei[i] = int(wei[i])
+    pp.append(cy[i])
+    pp.append(dis[i])
+    pp.append(hor[i])
+    pp.append(wei[i])
+    pp.append(acce[i])
+    X.append(pp)
+# print(X)
+# print(y)
+# X = [[-1, -1, 0, 5, 7, 8], [-2, -1, 2, 3, 8, -1], [1, 1, 0, 0, 2, 3], [2, 1, 2, 5, 0, -1], [2, 1, 2, 0, 2, 3],
+#    [3, 8, -1, -1, -1, 0]]
+# y = [1, 1, 2, 2, 3, 3]
+obj = classify(X, y)
+obj.split(0.25)
+obj.getbest()
+'''
